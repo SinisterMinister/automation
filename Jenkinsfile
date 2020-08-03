@@ -15,7 +15,7 @@ pipeline {
                 container('terragrunt') {
                     dir('terragrunt') {
                         withCredentials([usernamePassword(credentialsId: "aws", usernameVariable: 'ACCESS', passwordVariable: 'SECRET')]) {
-                            ssh "AWS_ACCESS_KEY_ID=$ACCESS AWS_SECRET_ACCESS_KEY=$SECRET terragrunt apply-all --terragrunt-non-interactive -auto-approve"
+                            sh "AWS_ACCESS_KEY_ID=$ACCESS AWS_SECRET_ACCESS_KEY=$SECRET terragrunt apply-all --terragrunt-non-interactive -auto-approve"
                         }
                     }
                 }
