@@ -2,7 +2,7 @@ metadata:
 spec:
   containers:
     - name: terragrunt
-      image: hub.sinimini.com/docker/hashicorp/terragrunt:latest
+      image: hub.sinimini.com/docker/terragrunt:latest
       tty: true
       args:
         - cat
