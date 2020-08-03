@@ -1,3 +1,4 @@
 # creation rules are evaluated sequentially, the first match wins
 creation_rules:
-  - pgp: "92346547E1F1A16D,07BA80505D92B5CE"
+  - pgp: 92346547E1F1A16D,07BA80505D92B5CE
+    kms: arn:aws:kms:us-east-1:441901922819:key/85ce6836-2fe3-4590-9dad-16d8d11b1063
