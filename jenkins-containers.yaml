@@ -1,0 +1,11 @@
+metadata:
+spec:
+  containers:
+    - name: terragrunt
+      image: hub.sinimini.com/docker/hashicorp/terragrunt:latest
+      tty: true
+      args:
+        - cat
+      command:
+        - "/bin/sh"
+        - "-c"
