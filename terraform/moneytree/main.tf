@@ -41,7 +41,7 @@ resource rancher2_app moneytree {
     project_id = rancher2_project.moneytree.id
     target_namespace = rancher2_namespace.moneytree.name
     template_name = "moneytree"
-    template_version = "0.1.16"
+    template_version = "0.1.18"
     answers = {
         "moneytree.image.digest" = data.docker_registry_image.moneytree.sha256_digest
     }
