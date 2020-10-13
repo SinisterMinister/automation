@@ -43,6 +43,7 @@ resource rancher2_app moneytree {
     template_name = "moneytree"
     template_version = var.chart_version
     answers = {
-        "moneytree.image.digest" = data.docker_registry_image.moneytree.sha256_digest
+        "moneytree.image.digest" = data.docker_registry_image.moneytree.sha256_digest'
+        "moneytree.forceMakerOrders" = false
     }
 }
