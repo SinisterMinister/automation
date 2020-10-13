@@ -4,5 +4,5 @@ include {
 }
 
 inputs = {
-  chart_version = "0.1.19"
+  chart_version = "0.1.20"
 }
