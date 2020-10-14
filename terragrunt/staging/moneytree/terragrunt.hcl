@@ -1,3 +1,7 @@
+locals {
+  secrets = yamldecode(sops_decrypt_file(find_in_parent_folders("secrets.sops.yaml")))
+}
+
 terraform {
   # Deploy version v0.0.1 in prod
   source = "${get_parent_terragrunt_dir()}/../terraform//moneytree?ref=origin/master"
@@ -9,10 +13,12 @@ include {
 }
 
 inputs = {
-  chart_version = "0.2.1"
+  chart_version = "0.2.4"
   environment = "staging"
   extra_answers = {
     "moneytree.forceMakerOrders" = false
+    "moneytree.enableDebugLogs" = false
+    "moneytree.maxOpenOrders" = 4
 
     "moneytree.coinbase.key" = "7f80661cd3fbaa1d52ea87d565074d4c"
     "moneytree.coinbase.passphrase" = "u0w273x7hw"
