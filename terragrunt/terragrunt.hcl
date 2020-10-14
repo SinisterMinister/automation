@@ -1,10 +1,11 @@
-terraform {
-  # Deploy version v0.0.1 in prod
-  source = "${get_parent_terragrunt_dir()}/../terraform//${path_relative_to_include()}"
-}
-
 remote_state {
   backend = "s3"
+  
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+
   config = {
     bucket = "sinimini"
 

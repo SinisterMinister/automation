@@ -1,6 +1,16 @@
-terraform {
-  backend "s3" {}
+locals {
+  chart_version = var.chart_version
+  sops_file_path = var.sops_file_path
+  environment = var.environment
+  name = "moneytree-${local.environment}"
+  extra_answers = var.extra_answers
+
+  answers = merge({
+    "moneytree.image.digest" = data.docker_registry_image.moneytree.sha256_digest
+    "moneytree.forceMakerOrders" = false
+  }, local.extra_answers)
 }
+
 provider "sops" {}
 
 provider "docker" {
@@ -12,7 +22,7 @@ provider "docker" {
 }
 
 data sops_file secrets {
-  source_file = var.sops_file_path
+  source_file = local.sops_file_path
 }
 
 data docker_registry_image moneytree {
@@ -27,23 +37,20 @@ provider rancher2 {
 
 resource rancher2_project moneytree {
     cluster_id = "local"
-    name = "moneytree"
+    name = local.name
 }
 
 resource rancher2_namespace moneytree {
     project_id = rancher2_project.moneytree.id
-    name = "moneytree"
+    name = local.name
 }
 
 resource rancher2_app moneytree {
     catalog_name = "hub"
-    name = "moneytree"
+    name = local.name
     project_id = rancher2_project.moneytree.id
     target_namespace = rancher2_namespace.moneytree.name
     template_name = "moneytree"
-    template_version = var.chart_version
-    answers = {
-        "moneytree.image.digest" = data.docker_registry_image.moneytree.sha256_digest
-        "moneytree.forceMakerOrders" = false
-    }
+    template_version = local.chart_version
+    answers = local.answers
 }

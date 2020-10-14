@@ -5,3 +5,12 @@ variable sops_file_path {
 variable chart_version {
     type = string
 }
+
+variable environment {
+    type = string
+}
+
+variable extra_answers {
+    type = map(string)
+    default = {}
+}
