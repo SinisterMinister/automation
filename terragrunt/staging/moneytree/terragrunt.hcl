@@ -13,12 +13,15 @@ include {
 }
 
 inputs = {
-  chart_version = "0.2.4"
+  chart_version = "0.3.0"
   environment = "staging"
   extra_answers = {
     "moneytree.forceMakerOrders" = false
-    "moneytree.enableDebugLogs" = false
-    "moneytree.maxOpenOrders" = 4
+    "moneytree.maxOpenOrders" = 3
+    "moneytree.disableFees" = true
+    "moneytree.targetReturn" = 0.003
+    "moneytree.reversalSpread" = 0.0003
+    "moneytree.cycleDelay" = "1s"
 
     "moneytree.coinbase.key" = "7f80661cd3fbaa1d52ea87d565074d4c"
     "moneytree.coinbase.passphrase" = "u0w273x7hw"
