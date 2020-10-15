@@ -22,7 +22,7 @@ inputs = {
     "moneytree.maxOpenOrders" = 3
     "moneytree.disableFees" = true
     "moneytree.targetReturn" = 0.003
-    "moneytree.reversalSpread" = 0.0003
+    "moneytree.reversalSpread" = 0.001
     "moneytree.cycleDelay" = "1s"
 
     "moneytree.coinbase.key" = local.secrets.coinbase.key
