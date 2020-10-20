@@ -28,5 +28,11 @@ inputs = {
     "moneytree.coinbase.key" = local.secrets.coinbase.key
     "moneytree.coinbase.passphrase" = local.secrets.coinbase.passphrase
     "moneytree.coinbase.secret" = local.secrets.coinbase.secret
+
+    "coinbase.websocket.orderReceivedHandlerInputBufferSize" = 16
+    "coinbase.websocket.orderOpenHandlerInputBufferSize" = 16
+    "coinbase.websocket.orderDoneHandlerInputBufferSize" = 16
+    "coinbase.websocket.orderMatchHandlerInputBufferSize" = 16
+    "coinbase.websocket.orderChangeHandlerInputBufferSize" = 16
   }
 }
