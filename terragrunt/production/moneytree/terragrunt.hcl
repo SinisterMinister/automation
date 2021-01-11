@@ -13,17 +13,16 @@ include {
 }
 
 inputs = {
-  chart_version = "0.3.0"
+  chart_version = "0.4.2"
   environment = "production"
   extra_answers = {
     "moneytree.forceMakerOrders" = true
     "moneytree.coinbase.useSandbox" = false
     "moneytree.enableDebugLogs" = false
-    "moneytree.maxOpenOrders" = 4
+    "moneytree.maxOpenPairs" = 4
     "moneytree.disableFees" = true
     "moneytree.targetReturn" = 0.003
-    "moneytree.reversalSpread" = 0.0015
-    "moneytree.cycleDelay" = "1s"
+    "moneytree.service.port" = 43210
 
     "moneytree.coinbase.key" = local.secrets.coinbase.key
     "moneytree.coinbase.passphrase" = local.secrets.coinbase.passphrase
