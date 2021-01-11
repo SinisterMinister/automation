@@ -20,7 +20,8 @@ inputs = {
     "moneytree.maxOpenPairs" = 4
     "moneytree.disableFees" = true
     "moneytree.targetReturn" = 0.003
-    "moneytree.service.port" = 43210
+    "moneytree.service.port" = 44444
+    "moneytree.service.clusterIP" = "10.128.35.200"
 
     "moneytree.coinbase.key" = "7f80661cd3fbaa1d52ea87d565074d4c"
     "moneytree.coinbase.passphrase" = "u0w273x7hw"
