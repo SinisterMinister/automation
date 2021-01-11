@@ -23,6 +23,7 @@ inputs = {
     "moneytree.disableFees" = true
     "moneytree.targetReturn" = 0.003
     "moneytree.service.port" = 43210
+    "moneytree.service.clusterIP" = "10.128.35.100"
 
     "moneytree.coinbase.key" = local.secrets.coinbase.key
     "moneytree.coinbase.passphrase" = local.secrets.coinbase.passphrase
