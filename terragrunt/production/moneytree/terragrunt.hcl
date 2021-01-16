@@ -20,8 +20,8 @@ inputs = {
     "moneytree.coinbase.useSandbox" = false
     "moneytree.enableDebugLogs" = false
     "moneytree.maxOpenPairs" = 4
-    "moneytree.disableFees" = true
-    "moneytree.targetReturn" = 0.003
+    "moneytree.disableFees" = false
+    "moneytree.targetReturn" = 0.001
     "moneytree.service.port" = 43210
     "moneytree.service.clusterIP" = "10.128.35.100"
 
