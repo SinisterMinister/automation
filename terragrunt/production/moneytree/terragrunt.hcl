@@ -28,5 +28,7 @@ inputs = {
     "moneytree.coinbase.key" = local.secrets.coinbase.key
     "moneytree.coinbase.passphrase" = local.secrets.coinbase.passphrase
     "moneytree.coinbase.secret" = local.secrets.coinbase.secret
+
+    "miraclegrow.moneytree.port" = 43210
   }
 }
