@@ -13,7 +13,7 @@ include {
 }
 
 inputs = {
-  chart_version = "0.5.6"
+  chart_version = "0.5.7"
   environment = "staging"
   extra_answers = {
     "moneytree.forceMakerOrders" = false
