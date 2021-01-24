@@ -18,8 +18,8 @@ inputs = {
   extra_answers = {
     "moneytree.forceMakerOrders" = false
     "moneytree.maxOpenPairs" = 4
-    "moneytree.disableFees" = true
-    "moneytree.targetReturn" = 0.003
+    "moneytree.disableFees" = false
+    "moneytree.targetReturn" = 0.001
     "moneytree.service.port" = 44444
     "moneytree.service.clusterIP" = "10.128.35.200"
 
