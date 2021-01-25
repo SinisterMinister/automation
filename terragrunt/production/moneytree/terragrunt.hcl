@@ -30,6 +30,6 @@ inputs = {
     "moneytree.coinbase.secret" = local.secrets.coinbase.secret
 
     "miraclegrow.moneytree.port" = 43210
-    "miraclegrow.updateFrequency"  "7s"
+    "miraclegrow.updateFrequency" = "7s"
   }
 }
