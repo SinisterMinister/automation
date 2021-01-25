@@ -21,7 +21,7 @@ inputs = {
     "moneytree.enableDebugLogs" = false
     "moneytree.maxOpenPairs" = 4
     "moneytree.disableFees" = false
-    "moneytree.targetReturn" = 0.001
+    "moneytree.targetReturn" = 0.002
     "moneytree.service.port" = 43210
     "moneytree.service.clusterIP" = "10.128.35.100"
 
