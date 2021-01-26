@@ -19,7 +19,7 @@ inputs = {
     "moneytree.forceMakerOrders" = false
     "moneytree.maxOpenPairs" = 1
     "moneytree.disableFees" = false
-    "moneytree.targetReturn" = 0.001
+    "moneytree.targetReturn" = 0.002
     "moneytree.service.port" = 44444
     "moneytree.service.clusterIP" = "10.128.35.200"
 
