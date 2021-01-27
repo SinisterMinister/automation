@@ -19,9 +19,9 @@ inputs = {
     "moneytree.forceMakerOrders" = false
     "moneytree.coinbase.useSandbox" = false
     "moneytree.enableDebugLogs" = false
-    "moneytree.maxOpenPairs" = 4
+    "moneytree.maxOpenPairs" = 2
     "moneytree.disableFees" = false
-    "moneytree.targetReturn" = 0.002
+    "moneytree.targetReturn" = 0.0025
     "moneytree.service.port" = 43210
     "moneytree.service.clusterIP" = "10.128.35.100"
 
