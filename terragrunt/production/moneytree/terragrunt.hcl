@@ -16,12 +16,12 @@ inputs = {
   chart_version = "0.6.1"
   environment = "production"
   extra_answers = {
-    "moneytree.forceMakerOrders" = false
+    "moneytree.forceMakerOrders" = true
     "moneytree.coinbase.useSandbox" = false
     "moneytree.enableDebugLogs" = false
     "moneytree.maxOpenPairs" = 2
     "moneytree.disableFees" = false
-    "moneytree.targetReturn" = 0.0025
+    "moneytree.targetReturn" = 0.003
     "moneytree.service.port" = 43210
     "moneytree.service.clusterIP" = "10.128.35.100"
 
