@@ -17,9 +17,9 @@ inputs = {
   environment = "staging"
   extra_answers = {
     "moneytree.forceMakerOrders" = false
-    "moneytree.maxOpenPairs" = 1
+    "moneytree.maxOpenPairs" = 5
     "moneytree.disableFees" = false
-    "moneytree.targetReturn" = 0.002
+    "moneytree.targetReturn" = 0.003
     "moneytree.service.port" = 44444
     "moneytree.service.clusterIP" = "10.128.35.200"
 
