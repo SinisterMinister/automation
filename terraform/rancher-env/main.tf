@@ -52,7 +52,7 @@ resource rancher2_namespace namespace {
 
 resource rancher2_app moneytree {
   for_each = local.apps
-  catalog_name = each.value.catalog
+  catalog_name = "${each.value.catalog}-${local.name}"
   name = each.value.displayName
   project_id = rancher2_project.project.id
   target_namespace = rancher2_namespace.namespace.name
