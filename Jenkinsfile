@@ -13,8 +13,10 @@ pipeline {
         stage('Update Application') {
             steps {
                 container('terragrunt') {
-                    withCredentials([usernamePassword(credentialsId: "aws", usernameVariable: 'ACCESS', passwordVariable: 'SECRET')]) {
-                        sh "AWS_ACCESS_KEY_ID=$ACCESS AWS_SECRET_ACCESS_KEY=$SECRET terragrunt apply-all --terragrunt-non-interactive -auto-approve"
+                    dir('terragrunt') {
+                        withCredentials([usernamePassword(credentialsId: "aws", usernameVariable: 'ACCESS', passwordVariable: 'SECRET')]) {
+                            sh "AWS_ACCESS_KEY_ID=$ACCESS AWS_SECRET_ACCESS_KEY=$SECRET terragrunt apply-all --terragrunt-non-interactive -auto-approve"
+                        }
                     }
                 }
             }
