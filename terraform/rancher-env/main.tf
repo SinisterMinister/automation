@@ -40,10 +40,8 @@ resource rancher2_project project {
 
 resource rancher2_catalog catalogs {
   for_each = local.catalogs
-  project_id = rancher2_project.project.id
-  name = each.value.name
+  name = "${each.value.name}-${local.name}"
   url = each.value.url
-  scope = "project"
   version = "helm_v3"
 }
 
