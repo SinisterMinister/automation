@@ -18,7 +18,7 @@ locals {
   sops_file_path = var.sops_file_path
   name = var.environment
   working_directory = var.working_directory
-  manifest = yamldecode(file(local.working_directory+"/manifest.yaml"))
+  manifest = yamldecode(file("${local.working_directory}/manifest.yaml"))
 
   catalogs = local.manifest.live ? {for catalog in manifest.catalogs : catalog.name => catalog} : {}
   apps = local.manifest.live ? {for app in manifest.charts : app.name => app} : {}
