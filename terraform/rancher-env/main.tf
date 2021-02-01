@@ -43,6 +43,7 @@ resource rancher2_catalog catalogs {
   name = "${each.value.name}-${local.name}"
   url = each.value.url
   version = "helm_v3"
+  refresh = true
 }
 
 resource rancher2_namespace namespace {
