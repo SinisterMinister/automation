@@ -60,4 +60,5 @@ resource rancher2_app moneytree {
   template_name = each.value.name
   template_version = each.value.version
   values_yaml = base64encode(yamlencode(each.value.answers))
+  depends_on = [ rancher2_catalog.catalogs ]
 }
