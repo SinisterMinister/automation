@@ -18,10 +18,10 @@ locals {
   sops_file_path = var.sops_file_path
   name = var.environment
   working_directory = var.working_directory
-  manifest = yamldecode(templatefile("${local.working_directory}/manifest.yaml"),{
+  manifest = yamldecode(templatefile("${local.working_directory}/manifest.yaml",{
     "environment" = local.name
-  })
-  
+  }))
+
   raw_catalogs = yamlencode({for catalog in local.manifest.catalogs : catalog.name => catalog})
   raw_apps = yamlencode({for app in local.manifest.charts : app.name => app})
 
