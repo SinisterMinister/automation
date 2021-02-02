@@ -19,9 +19,11 @@ locals {
   name = var.environment
   working_directory = var.working_directory
   manifest = yamldecode(file("${local.working_directory}/manifest.yaml"))
+  raw_catalogs = {for catalog in local.manifest.catalogs : catalog.name => catalog}
+  raw_apps = {for app in local.manifest.charts : app.name => app}
 
-  catalogs = local.manifest.live ? {for catalog in local.manifest.catalogs : catalog.name => catalog} : {}
-  apps = local.manifest.live ? {for app in local.manifest.charts : app.name => app} : {}
+  catalogs = local.manifest.live ? local.raw_catalogs : {}
+  apps = local.manifest.live ? local.raw_apps : {}
 }
 
 data sops_file secrets {
