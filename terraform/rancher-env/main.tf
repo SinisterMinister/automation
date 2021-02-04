@@ -21,12 +21,13 @@ locals {
   manifest = yamldecode(templatefile("${local.working_directory}/manifest.yaml",{
     "environment" = local.name
   }))
+  live = local.manifest.live
 
   raw_catalogs = yamlencode({for catalog in local.manifest.catalogs : catalog.name => catalog})
   raw_apps = yamlencode({for app in local.manifest.charts : app.name => app})
 
-  catalogs = yamldecode(local.manifest.live ? local.raw_catalogs : "{}")
-  apps = yamldecode(local.manifest.live ? local.raw_apps : "{}")
+  catalogs = yamldecode(local.live ? local.raw_catalogs : "{}")
+  apps = yamldecode(local.live ? local.raw_apps : "{}")
 }
 
 data sops_file secrets {
@@ -39,28 +40,30 @@ data sops_file secrets {
 
 
 resource rancher2_project project {
+  count = local.live ? 1 : 0
   cluster_id = "local"
   name = local.name
 }
 
 resource rancher2_catalog catalogs {
   for_each = local.catalogs
-  name = "${each.value.name}-${local.name}"
+  name = "${local.name}-${each.value.name}"
   url = each.value.url
   version = "helm_v3"
 }
 
 resource rancher2_namespace namespace {
-    project_id = rancher2_project.project.id
-    name = local.name
+    for_each = local.apps
+    project_id = rancher2_project.project[0].id
+    name = "${local.name}-${each.value.displayName}"
 }
 
 resource rancher2_app moneytree {
   for_each = local.apps
-  catalog_name = "${each.value.catalog}-${local.name}"
+  catalog_name = "${local.name}-${each.value.catalog}"
   name = each.value.displayName
-  project_id = rancher2_project.project.id
-  target_namespace = rancher2_namespace.namespace.name
+  project_id = rancher2_project.project[0].id
+  target_namespace = rancher2_namespace.namespace[each.key].name
   template_name = each.value.name
   template_version = each.value.version
   values_yaml = base64encode(yamlencode(each.value.answers))
