@@ -1,12 +1,12 @@
 provider "sops" {}
 
-# provider "docker" {
-#   registry_auth {
-#     address = "hub.sinimini.com"
-#     username = data.sops_file.secrets.data["jcr.user"]
-#     password = data.sops_file.secrets.data["jcr.password"]
-#   }
-# }
+provider "docker" {
+  registry_auth {
+    address = "hub.sinimini.com"
+    username = data.sops_file.secrets.data["jcr.user"]
+    password = data.sops_file.secrets.data["jcr.password"]
+  }
+}
 
 provider rancher2 {
     api_url = "https://rancher.sinimini.com"
@@ -25,18 +25,21 @@ locals {
 
   raw_catalogs = yamlencode({for catalog in local.manifest.catalogs : catalog.name => catalog})
   raw_apps = yamlencode({for app in local.manifest.charts : app.name => app})
+  raw_digests = yamlencode({for app in local.manifest.digests : app.path => app})
 
   catalogs = yamldecode(local.live ? local.raw_catalogs : "{}")
   apps = yamldecode(local.live ? local.raw_apps : "{}")
+  digests = yamldecode(local.live ? local.raw_digests : "{}")
 }
 
 data sops_file secrets {
   source_file = local.sops_file_path
 }
 
-# data docker_registry_image moneytree {
-#     name = "hub.sinimini.com/docker/moneytree:latest"
-# }
+data docker_registry_image digests {
+  for_each = local.digests
+  name = each.value.image
+}
 
 
 resource rancher2_project project {
