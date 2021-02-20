@@ -12,6 +12,6 @@ eval "$(jq -r '@sh "DIGEST_PATH=\(.path) DIGEST=\(.digest)"')"
 # Safely produce a JSON object containing the result value.
 # jq will ensure that the value is properly quoted
 # and escaped to produce a valid JSON string.
-OUTPUT=`jq -n "$DIGEST_PATH = \"$DIGEST\""`
+OUTPUT=`jq -n ".$DIGEST_PATH = \"$DIGEST\""`
 
-jq -n ".output = \"$OUTPUT\""
+jq -n --arg output "$OUTPUT" '.output = $output'
