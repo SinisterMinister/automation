@@ -41,7 +41,6 @@ data docker_registry_image digests {
   name = each.value.image
 }
 
-
 resource rancher2_project project {
   count = local.live ? 1 : 0
   cluster_id = "local"
@@ -53,6 +52,7 @@ resource rancher2_catalog catalogs {
   name = "${local.name}-${each.value.name}"
   url = each.value.url
   version = "helm_v3"
+  refresh = true
 }
 
 resource rancher2_namespace namespace {
