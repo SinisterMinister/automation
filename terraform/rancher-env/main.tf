@@ -30,8 +30,8 @@ locals {
   catalogs = yamldecode(local.live ? local.raw_catalogs : "{}")
   apps = yamldecode(local.live ? local.raw_apps : "{}")
   digests = yamldecode(local.live ? local.raw_digests : "{}")
-  digest_list = [for json in data.external.digests.*.output : jsondecode(json)]
-  digest_map = merge(local.digest_list)
+  # digest_list = [for json in data.external.digests.*.result.output : jsondecode(json)]
+  # digest_map = merge(local.digest_list)
 }
 
 data sops_file secrets {
