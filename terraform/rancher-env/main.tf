@@ -44,7 +44,7 @@ data docker_registry_image digests {
   name = each.value.image
 }
 
-data external answers {
+data external digests {
   for_each = local.digests
   program = ["bash", "${path.module}/digest-handler.sh"]
 
