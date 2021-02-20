@@ -33,7 +33,7 @@ locals {
   digest_list = [
     for json in data.external.digests.*.result.output : jsondecode(json)
   ]
-  digest_map = merge(digest_list...)
+  digest_map = merge(local.digest_list...)
 }
 
 data sops_file secrets {
