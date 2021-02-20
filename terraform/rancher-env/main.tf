@@ -41,6 +41,16 @@ data docker_registry_image digests {
   name = each.value.image
 }
 
+data external answers {
+  for_each = local.digests
+  program = ["bash", "${path.module}/digest-handler.sh"]
+
+  query = {
+    path = each.value.path
+    digest = data.docker_registry_image.digests[each.key].sha256_digest
+  }
+}
+
 resource rancher2_project project {
   count = local.live ? 1 : 0
   cluster_id = "local"
