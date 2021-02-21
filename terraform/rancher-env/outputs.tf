@@ -1,3 +1,3 @@
 output digests {
-  value = data.external.digests
+  value = local.digest_json
 }

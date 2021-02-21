@@ -31,7 +31,9 @@ locals {
   apps = yamldecode(local.live ? local.raw_apps : "{}")
   digests = yamldecode(local.live ? local.raw_digests : "{}")
   digest_list = [for key in keys(data.external.digests) : jsondecode(data.external.digests[key].result.output)]
-  digest_map = merge(flatten([local.digest_list])...)
+
+  # Flatten to deal with language bug
+  digest_json = jsonencode(merge(flatten([local.digest_list])...))
 }
 
 data sops_file secrets {
