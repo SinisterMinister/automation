@@ -1,3 +1,3 @@
 output digests {
-  value = local.digest_json
+  value = local.answers
 }
