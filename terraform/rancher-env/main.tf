@@ -30,7 +30,7 @@ locals {
   catalogs = yamldecode(local.live ? local.raw_catalogs : "{}")
   apps = yamldecode(local.live ? local.raw_apps : "{}")
   digests = yamldecode(local.live ? local.raw_digests : "{}")
-  digest_list = [for key, digest in data.external.digests : jsondecode(data.external.digests[key]).result.output]
+  digest_list = [for key in keys(data.external.digests) : jsondecode(data.external.digests[key]).result.output]
   digest_map = merge(local.digest_list)
 }
 
