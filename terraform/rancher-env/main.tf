@@ -34,6 +34,7 @@ locals {
 
   # Flatten to deal with language bug
   digest_json = jsonencode(merge(flatten([local.digest_list])...))
+  answers = {for key in keys (data.external.answers) : key => jsondecode(data.external.answers[key].result.output)}
 }
 
 data sops_file secrets {
@@ -52,6 +53,16 @@ data external digests {
   query = {
     path = each.value.path
     digest = data.docker_registry_image.digests[each.key].sha256_digest
+  }
+}
+
+data external answers {
+  for_each = local.apps
+  program = ["bash", "${path.module}/digest-answer-merge.sh"]
+
+  query = {
+    answers = jsonencode(each.value.answers)
+    digests = local.digest_json
   }
 }
 
@@ -83,6 +94,6 @@ resource rancher2_app moneytree {
   target_namespace = rancher2_namespace.namespace[each.key].name
   template_name = each.value.name
   template_version = each.value.version
-  values_yaml = base64encode(yamlencode(each.value.answers))
+  values_yaml = base64encode(yamlencode(local.answers[each.key]))
   depends_on = [ rancher2_catalog.catalogs ]
 }
