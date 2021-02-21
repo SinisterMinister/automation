@@ -9,6 +9,6 @@ set -e
 # and escaped for consumption by the shell.
 eval "$(jq -r '@sh "DIGESTS=\(.digests) ANSWERS=\(.answers)"')"
 
-OUTPUT=`echo "$DIGESTS $ANSWERS" | jq -n 'reduce inputs as $in (null; . + $in)'`
+OUTPUT=`echo "$ANSWERS$DIGESTS" | jq -n 'reduce inputs as $in (null; . + $in)'`
 
 jq -n --arg output "$OUTPUT" '.output = $output'
